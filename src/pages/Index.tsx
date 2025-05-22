@@ -107,18 +107,18 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+      <footer className="bg-gradient-to-r from-blue-500 to-pink-400 text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center mb-4">
             <div className="h-8 w-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-2">
               <span className="text-white font-bold text-lg">V</span>
             </div>
-            <span className="text-xl font-bold">VidaPlena</span>
+            <span className="text-xl font-bold">VidaPlena</span> {/* Will inherit text-white */}
           </div>
-          <p className="text-gray-400 mb-4">
+          <p className="text-blue-100 mb-4"> {/* Changed from text-gray-400 */}
             Transformando vidas através do conhecimento e desenvolvimento pessoal.
           </p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-pink-700 font-medium text-sm"> {/* Changed from text-gray-500 */}
             © 2024 VidaPlena. Todos os direitos reservados.
           </p>
         </div>
