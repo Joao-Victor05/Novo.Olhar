@@ -24,7 +24,7 @@ const ThemeCard: React.FC<ThemeCardProps> = ({ title, description, icon: Icon, l
           <Icon className="h-8 w-8 text-white" />
         </div>
         
-        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-rose-600 transition-colors duration-300">
           {title}
         </h3>
         
@@ -32,7 +32,7 @@ const ThemeCard: React.FC<ThemeCardProps> = ({ title, description, icon: Icon, l
           {description}
         </p>
         
-        <div className="flex items-center text-blue-600 font-medium group-hover:text-blue-700">
+        <div className="flex items-center text-rose-600 font-medium group-hover:text-rose-700">
           <span>Explorar</span>
           <svg className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
