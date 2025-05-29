@@ -9,6 +9,9 @@ import Empreendedorismo from "./pages/Empreendedorismo";
 import PlanoCarreira from "./pages/PlanoCarreira";
 import Saude from "./pages/Saude";
 import MapaInterativo from "./pages/MapaInterativo";
+import CentralAjuda from "./pages/CentralAjuda";
+import FaleConosco from "./pages/FaleConosco";
+import EncontreApoio from "./pages/EncontreApoio";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +28,9 @@ const App = () => (
           <Route path="/plano-carreira" element={<PlanoCarreira />} />
           <Route path="/saude" element={<Saude />} />
           <Route path="/mapa-interativo" element={<MapaInterativo />} />
+          <Route path="/central-ajuda" element={<CentralAjuda />} />
+          <Route path="/fale-conosco" element={<FaleConosco />} />
+          <Route path="/encontre-apoio" element={<EncontreApoio />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
