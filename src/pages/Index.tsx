@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import ImageCarousel from '../components/ImageCarousel';
 import ThemeCard from '../components/ThemeCard';
@@ -97,12 +98,18 @@ const Index = () => {
             com nossas ferramentas e conteúdos exclusivos.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-rose-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200">
+            <Link
+              to="/empreendedorismo"
+              className="bg-white text-rose-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 inline-block"
+            >
               Explorar Conteúdos
-            </button>
-            <button className="border-2 border-gray-800 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 hover:text-white transition-all duration-200">
+            </Link>
+            <Link
+              to="/central-ajuda"
+              className="border-2 border-gray-800 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 hover:text-white transition-all duration-200 inline-block"
+            >
               Saiba Mais
-            </button>
+            </Link>
           </div>
         </div>
       </section>
