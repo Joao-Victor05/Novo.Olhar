@@ -87,12 +87,12 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-rose-400 to-pink-400">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-rose-200 to-pink-200">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
             Comece sua jornada hoje mesmo
           </h2>
-          <p className="text-xl text-rose-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
             Junte-se a milhares de pessoas que já estão transformando suas vidas 
             com nossas ferramentas e conteúdos exclusivos.
           </p>
@@ -100,7 +100,7 @@ const Index = () => {
             <button className="bg-white text-rose-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200">
               Explorar Conteúdos
             </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-rose-600 transition-all duration-200">
+            <button className="border-2 border-gray-800 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 hover:text-white transition-all duration-200">
               Saiba Mais
             </button>
           </div>
