@@ -3,7 +3,7 @@ import React from 'react';
 import Navigation from '../components/Navigation';
 import ImageCarousel from '../components/ImageCarousel';
 import ThemeCard from '../components/ThemeCard';
-import Logo from '../components/Logo';
+import Footer from '../components/Footer';
 import { Briefcase, TrendingUp, Heart, Map } from 'lucide-react';
 
 const Index = () => {
@@ -34,7 +34,7 @@ const Index = () => {
       description: 'Explore oportunidades, eventos e recursos na sua região. Conecte-se com a comunidade e descubra novos caminhos.',
       icon: Map,
       link: '/mapa-interativo',
-      color: 'from-violet-400 to-purple-400'
+      color: 'from-purple-300 to-pink-300'
     }
   ];
 
@@ -107,20 +107,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-dark-magenta text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="flex items-center justify-center mb-4">
-            <Logo showText={true} className="text-white" />
-          </div>
-          <p className="text-pink-100 mb-4">
-            Transformando vidas através do conhecimento e desenvolvimento pessoal.
-          </p>
-          <p className="text-pink-200 font-medium text-sm">
-            © 2024 Novo Olhar. Todos os direitos reservados.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
