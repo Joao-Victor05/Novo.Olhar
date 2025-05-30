@@ -8,7 +8,7 @@ const ImageCarousel = () => {
 
   const images = [
     {
-      url: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&h=600&fit=crop',
+      url: 'https://universo.uniateneu.edu.br/wp-content/uploads/2024/06/Empreendedorismo.jpg',
       title: 'Empreendedorismo',
       subtitle: 'Transforme suas ideias em negócios de sucesso',
       link: '/empreendedorismo'
