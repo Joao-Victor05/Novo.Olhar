@@ -88,7 +88,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-rose-200 to-pink-200">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-rose-100 to-pink-100">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
             Comece sua jornada hoje mesmo
@@ -105,7 +105,7 @@ const Index = () => {
               Explorar Conteúdos
             </Link>
             <Link
-              to="/central-ajuda"
+              to="/sobre"
               className="border-2 border-gray-800 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 hover:text-white transition-all duration-200 inline-block"
             >
               Saiba Mais

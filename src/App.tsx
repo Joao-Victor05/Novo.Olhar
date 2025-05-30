@@ -12,6 +12,7 @@ import MapaInterativo from "./pages/MapaInterativo";
 import CentralAjuda from "./pages/CentralAjuda";
 import FaleConosco from "./pages/FaleConosco";
 import EncontreApoio from "./pages/EncontreApoio";
+import Sobre from "./pages/Sobre";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/central-ajuda" element={<CentralAjuda />} />
           <Route path="/fale-conosco" element={<FaleConosco />} />
           <Route path="/encontre-apoio" element={<EncontreApoio />} />
+          <Route path="/sobre" element={<Sobre />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
