@@ -14,7 +14,7 @@ const ImageCarousel = () => {
       link: '/empreendedorismo'
     },
     {
-      url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=600&fit=crop',
+      url: 'https://www.contabeis.com.br/assets/img/news/n_45054_9ba9febf50c076b90b01c75dadd027cc.jpg',
       title: 'Plano de Carreira',
       subtitle: 'Desenvolva sua carreira profissional',
       link: '/plano-carreira'
@@ -85,7 +85,7 @@ const ImageCarousel = () => {
         </div>
       ))}
 
-      {/* Navigation Buttons */}
+      {/* Navegação Botões */}
       <button
         onClick={goToPrevious}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-all duration-200 z-10"
