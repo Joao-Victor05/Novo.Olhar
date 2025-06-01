@@ -1,100 +1,100 @@
 
 import React from 'react';
 import Navigation from '../components/Navigation';
-import { Heart, Activity, Brain, Utensils, Moon, Smile } from 'lucide-react';
+import { Gamepad2, Zap, Sparkles, Trophy, Smile, Star } from 'lucide-react';
 
 const Saude = () => {
-  const healthAreas = [
+  const ludisAreas = [
     {
-      title: 'Atividade Física',
-      icon: Activity,
-      color: 'from-orange-500 to-red-500',
-      content: 'Exercícios regulares fortalecem o corpo, melhoram o humor e aumentam a energia. Encontre atividades que você goste e faça delas parte da sua rotina.',
+      title: 'Jogos e Diversão',
+      icon: Gamepad2,
+      color: 'from-blue-500 to-purple-500',
+      content: 'Explore o mundo dos jogos e atividades lúdicas que estimulam a criatividade e proporcionam momentos de alegria e descontração.',
       tips: [
-        'Comece com 30 minutos de caminhada diária',
-        'Inclua exercícios de força 2-3 vezes por semana',
-        'Pratique alongamentos e flexibilidade',
-        'Encontre atividades prazerosas como dança ou esportes'
+        'Dedique tempo para jogos que estimulem o raciocínio',
+        'Pratique atividades que desenvolvam habilidades motoras',
+        'Participe de jogos em grupo para socializar',
+        'Experimente diferentes tipos de entretenimento digital'
       ]
     },
     {
-      title: 'Alimentação Saudável',
-      icon: Utensils,
-      color: 'from-green-500 to-emerald-500',
-      content: 'Uma alimentação equilibrada fornece os nutrientes necessários para o funcionamento optimal do corpo e mente.',
+      title: 'Criatividade e Arte',
+      icon: Sparkles,
+      color: 'from-pink-500 to-rose-500',
+      content: 'Desenvolva sua expressão artística através de atividades criativas que nutrem a imaginação e promovem o bem-estar emocional.',
       tips: [
-        'Consuma mais frutas e vegetais',
-        'Mantenha-se hidratado bebendo água regularmente',
-        'Reduza alimentos processados e açúcar',
-        'Faça refeições regulares e balanceadas'
+        'Experimente diferentes formas de arte e expressão',
+        'Dedique tempo para atividades manuais e criativas',
+        'Participe de workshops e oficinas artísticas',
+        'Compartilhe suas criações com outros'
       ]
     },
     {
-      title: 'Saúde Mental',
-      icon: Brain,
-      color: 'from-purple-500 to-indigo-500',
-      content: 'Cuidar da mente é fundamental para o bem-estar geral. Pratique autoconhecimento e busque equilíbrio emocional.',
+      title: 'Aprendizado Lúdico',
+      icon: Zap,
+      color: 'from-yellow-500 to-orange-500',
+      content: 'Transforme o aprendizado em uma experiência divertida e engajante, descobrindo novas habilidades através de métodos interativos.',
       tips: [
-        'Pratique meditação ou mindfulness',
-        'Mantenha um diário de gratidão',
-        'Busque apoio profissional quando necessário',
-        'Cultive relacionamentos positivos'
+        'Use jogos educativos para aprender novos conceitos',
+        'Participe de quiz e desafios intelectuais',
+        'Explore plataformas de aprendizado gamificado',
+        'Ensine outros o que você aprendeu de forma divertida'
       ]
     },
     {
-      title: 'Qualidade do Sono',
-      icon: Moon,
-      color: 'from-blue-500 to-cyan-500',
-      content: 'O sono reparador é essencial para a recuperação física e mental, afetando diretamente sua qualidade de vida.',
+      title: 'Conquistas e Metas',
+      icon: Trophy,
+      color: 'from-green-500 to-teal-500',
+      content: 'Estabeleça objetivos pessoais e celebre suas conquistas, criando um sistema de recompensas que motive seu crescimento contínuo.',
       tips: [
-        'Mantenha horários regulares para dormir e acordar',
-        'Crie um ambiente propício ao sono',
-        'Evite telas antes de dormir',
-        'Desenvolva uma rotina relaxante noturna'
+        'Defina metas pequenas e alcançáveis',
+        'Celebre cada conquista, por menor que seja',
+        'Mantenha um registro de seu progresso',
+        'Compartilhe suas vitórias com amigos e família'
       ]
     }
   ];
 
-  const habits = [
-    'Beber 8 copos de água por dia',
-    'Fazer pausas regulares no trabalho',
-    'Praticar respiração profunda',
-    'Caminhar na natureza',
-    'Limitar tempo nas redes sociais',
-    'Expressar gratidão diariamente'
+  const ludisHabits = [
+    'Reservar 30 minutos diários para atividades lúdicas',
+    'Experimentar um novo jogo ou hobby semanalmente',
+    'Participar de atividades em grupo regularmente',
+    'Manter um diário de experiências divertidas',
+    'Desafiar-se com quebra-cabeças e jogos mentais',
+    'Celebrar pequenas conquistas diárias'
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 to-pink-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
       <Navigation />
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-red-500 to-pink-500 mb-6">
-              <Heart className="h-10 w-10 text-white" />
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 mb-6">
+              <Gamepad2 className="h-10 w-10 text-white" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Saúde e Bem-estar
+              Ludis - Diversão e Aprendizado
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Cuide do seu corpo e mente com hábitos saudáveis. Descubra estratégias 
-              práticas para uma vida mais equilibrada e plena.
+              Descubra o poder transformador dos jogos e atividades lúdicas. 
+              Desenvolva habilidades, estimule a criatividade e encontre alegria no aprendizado.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Health Areas Section */}
+      {/* Ludis Areas Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            Pilares de uma Vida Saudável
+            Dimensões do Universo Ludis
           </h2>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {healthAreas.map((area, index) => {
+            {ludisAreas.map((area, index) => {
               const Icon = area.icon;
               return (
                 <div
@@ -115,11 +115,11 @@ const Saude = () => {
                   </p>
                   
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-gray-900">Dicas Práticas:</h4>
+                    <h4 className="font-semibold text-gray-900">Atividades Recomendadas:</h4>
                     <ul className="space-y-2">
                       {area.tips.map((tip, tipIndex) => (
                         <li key={tipIndex} className="flex items-start text-gray-700">
-                          <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-pink-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                          <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
                           <span>{tip}</span>
                         </li>
                       ))}
@@ -133,20 +133,20 @@ const Saude = () => {
       </section>
 
       {/* Habits Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-red-500 to-pink-500">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-500 to-pink-500">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <Smile className="h-12 w-12 text-white mx-auto mb-4" />
+            <Star className="h-12 w-12 text-white mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-white mb-4">
-              Hábitos Saudáveis Diários
+              Hábitos Lúdicos Diários
             </h2>
-            <p className="text-red-100 text-lg max-w-2xl mx-auto">
-              Pequenas mudanças diárias podem gerar grandes transformações na sua saúde e bem-estar
+            <p className="text-purple-100 text-lg max-w-2xl mx-auto">
+              Incorpore diversão e aprendizado na sua rotina com estas práticas envolventes
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {habits.map((habit, index) => (
+            {ludisHabits.map((habit, index) => (
               <div
                 key={habit}
                 className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors duration-200"
@@ -163,46 +163,48 @@ const Saude = () => {
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              A Importância do Equilíbrio
+              O Poder dos Jogos no Desenvolvimento Pessoal
             </h3>
             <div className="prose prose-lg max-w-none text-gray-600">
               <p className="mb-4">
-                A saúde verdadeira vai além da ausência de doenças. É um estado de bem-estar 
-                físico, mental e social completo. Para alcançar esse equilíbrio, é fundamental 
-                adotar uma abordagem holística que considere todos os aspectos da vida.
+                O universo lúdico vai muito além do entretenimento. Jogos e atividades divertidas 
+                são ferramentas poderosas para o desenvolvimento de habilidades cognitivas, sociais 
+                e emocionais. Eles estimulam a criatividade, melhoram a concentração e promovem 
+                o bem-estar mental.
               </p>
               <p className="mb-4">
-                O estresse moderno pode impactar significativamente nossa saúde. Técnicas de 
-                relaxamento, como meditação, yoga e respiração profunda, podem ajudar a reduzir 
-                os níveis de estresse e promover um estado de calma e clareza mental.
+                Através de experiências lúdicas, desenvolvemos resiliência, aprendemos a lidar com 
+                desafios de forma positiva e cultivamos uma mentalidade de crescimento. Os jogos 
+                nos ensinam que errar faz parte do processo de aprendizado e que persistência 
+                leva ao sucesso.
               </p>
               <p>
-                Lembre-se: mudanças pequenas e consistentes são mais eficazes do que transformações 
-                drásticas e insustentáveis. Comece devagar e seja paciente consigo mesmo durante 
-                o processo de construção de novos hábitos saudáveis.
+                Integrar elementos lúdicos na vida cotidiana torna as tarefas mais prazerosas e 
+                eficazes. Gamificar objetivos pessoais e profissionais pode aumentar significativamente 
+                a motivação e o engajamento.
               </p>
             </div>
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Mindfulness e Bem-estar Emocional
+              Criatividade e Expressão Artística
             </h3>
             <div className="prose prose-lg max-w-none text-gray-600">
               <p className="mb-4">
-                A prática de mindfulness, ou atenção plena, é uma ferramenta poderosa para 
-                melhorar o bem-estar emocional. Ela nos ajuda a estar presentes no momento 
-                atual, reduzindo a ansiedade sobre o futuro e as preocupações sobre o passado.
+                A expressão criativa é fundamental para o bem-estar emocional e o desenvolvimento 
+                pessoal. Atividades artísticas como desenho, música, escrita criativa e artesanato 
+                oferecem uma forma única de comunicação e autoexpressão.
               </p>
               <p className="mb-4">
-                Incorpore momentos de mindfulness na sua rotina diária: ao comer, caminhar, 
-                ou mesmo durante atividades simples como lavar louça. Essa prática pode 
-                transformar tarefas cotidianas em oportunidades de conexão consigo mesmo.
+                Não é necessário ser um artista profissional para desfrutar dos benefícios da 
+                criatividade. O importante é permitir-se experimentar, explorar e se divertir 
+                com o processo criativo, sem julgamentos ou expectativas de perfeição.
               </p>
               <p>
-                A gratidão também é um componente essencial do bem-estar emocional. Reconhecer 
-                e apreciar as coisas boas da vida, por menores que sejam, pode melhorar 
-                significativamente seu humor e perspectiva geral.
+                Reserve momentos regulares para atividades criativas em sua rotina. Esses momentos 
+                de pausa criativa podem reduzir o estresse, aumentar a autoestima e proporcionar 
+                uma sensação profunda de realização pessoal.
               </p>
             </div>
           </div>
