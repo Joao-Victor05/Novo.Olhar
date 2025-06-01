@@ -1,11 +1,24 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navigation from '../components/Navigation';
 import { Map, MapPin, Calendar, Users, Search, Filter } from 'lucide-react';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
+// Fix for default markers in Leaflet
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
 
 const MapaInterativo = () => {
   const [selectedCategory, setSelectedCategory] = useState('todos');
   const [searchTerm, setSearchTerm] = useState('');
+  const mapRef = useRef<L.Map | null>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const markersRef = useRef<L.Marker[]>([]);
 
   const categories = [
     { id: 'todos', name: 'Todos', color: 'gray' },
@@ -23,7 +36,9 @@ const MapaInterativo = () => {
       address: 'Av. Paulista, 1000 - São Paulo, SP',
       description: 'Hub de inovação com eventos semanais para empreendedores',
       nextEvent: 'Workshop de Pitch - 25/05/2024',
-      distance: '2.5 km'
+      distance: '2.5 km',
+      lat: -23.5613,
+      lng: -46.6564
     },
     {
       id: 2,
@@ -32,7 +47,9 @@ const MapaInterativo = () => {
       address: 'Rua da Consolação, 500 - São Paulo, SP',
       description: 'Cursos de tecnologia e desenvolvimento profissional',
       nextEvent: 'Curso de Python - 30/05/2024',
-      distance: '1.8 km'
+      distance: '1.8 km',
+      lat: -23.5505,
+      lng: -46.6333
     },
     {
       id: 3,
@@ -41,7 +58,9 @@ const MapaInterativo = () => {
       address: 'Rua Augusta, 200 - São Paulo, SP',
       description: 'Ambiente colaborativo para profissionais e empresários',
       nextEvent: 'Happy Hour Networking - 27/05/2024',
-      distance: '3.2 km'
+      distance: '3.2 km',
+      lat: -23.5489,
+      lng: -46.6388
     },
     {
       id: 4,
@@ -50,7 +69,9 @@ const MapaInterativo = () => {
       address: 'Av. Rebouças, 800 - São Paulo, SP',
       description: 'Serviços de saúde física e mental',
       nextEvent: 'Palestra sobre Mindfulness - 28/05/2024',
-      distance: '4.1 km'
+      distance: '4.1 km',
+      lat: -23.5629,
+      lng: -46.6825
     },
     {
       id: 5,
@@ -59,7 +80,9 @@ const MapaInterativo = () => {
       address: 'Rua Bela Cintra, 300 - São Paulo, SP',
       description: 'Encontros mensais da comunidade de desenvolvedores',
       nextEvent: 'React Native Workshop - 02/06/2024',
-      distance: '2.8 km'
+      distance: '2.8 km',
+      lat: -23.5567,
+      lng: -46.6526
     },
     {
       id: 6,
@@ -68,7 +91,9 @@ const MapaInterativo = () => {
       address: 'Av. Faria Lima, 1500 - São Paulo, SP',
       description: 'Cursos e mentorias para desenvolvimento de carreira',
       nextEvent: 'Mentoria de Carreira - 01/06/2024',
-      distance: '5.2 km'
+      distance: '5.2 km',
+      lat: -23.5781,
+      lng: -46.6925
     }
   ];
 
@@ -83,6 +108,81 @@ const MapaInterativo = () => {
     const cat = categories.find(c => c.id === category);
     return cat ? cat.color : 'gray';
   };
+
+  const getMarkerIcon = (category: string) => {
+    const color = getCategoryColor(category);
+    const colorMap: { [key: string]: string } = {
+      blue: '#3B82F6',
+      green: '#10B981',
+      purple: '#8B5CF6',
+      red: '#EF4444',
+      gray: '#6B7280'
+    };
+
+    return L.divIcon({
+      className: 'custom-div-icon',
+      html: `<div style="background-color: ${colorMap[color] || colorMap.gray}; width: 25px; height: 25px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>`,
+      iconSize: [25, 25],
+      iconAnchor: [12, 12]
+    });
+  };
+
+  useEffect(() => {
+    if (!mapContainerRef.current) return;
+
+    // Initialize map
+    mapRef.current = L.map(mapContainerRef.current).setView([-23.5505, -46.6333], 12);
+
+    // Add tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(mapRef.current);
+
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    // Clear existing markers
+    markersRef.current.forEach(marker => {
+      mapRef.current?.removeLayer(marker);
+    });
+    markersRef.current = [];
+
+    // Add filtered markers
+    filteredLocations.forEach(location => {
+      const marker = L.marker([location.lat, location.lng], {
+        icon: getMarkerIcon(location.category)
+      }).addTo(mapRef.current!);
+
+      const popupContent = `
+        <div class="p-3 min-w-[250px]">
+          <h3 class="font-bold text-lg mb-2">${location.name}</h3>
+          <p class="text-sm text-gray-600 mb-2">${location.address}</p>
+          <p class="text-sm mb-2">${location.description}</p>
+          <div class="flex items-center text-green-600 text-sm">
+            <span class="font-medium">${location.nextEvent}</span>
+          </div>
+          <div class="mt-2 text-xs text-gray-500">${location.distance}</div>
+        </div>
+      `;
+
+      marker.bindPopup(popupContent);
+      markersRef.current.push(marker);
+    });
+
+    // Fit map to show all markers if there are any
+    if (markersRef.current.length > 0) {
+      const group = new L.FeatureGroup(markersRef.current);
+      mapRef.current.fitBounds(group.getBounds().pad(0.1));
+    }
+  }, [filteredLocations]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-white">
@@ -142,24 +242,17 @@ const MapaInterativo = () => {
         </div>
       </section>
 
-      {/* Map Placeholder and Results */}
+      {/* Interactive Map and Results */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Map Placeholder */}
-            <div className="bg-gray-100 rounded-xl p-8 flex items-center justify-center min-h-[500px]">
-              <div className="text-center">
-                <Map className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                  Mapa Interativo
-                </h3>
-                <p className="text-gray-500">
-                  Visualização dos locais será exibida aqui
-                </p>
-                <p className="text-sm text-gray-400 mt-4">
-                  {filteredLocations.length} locais encontrados
-                </p>
-              </div>
+            {/* Interactive Map */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div 
+                ref={mapContainerRef} 
+                className="w-full h-[500px]"
+                style={{ minHeight: '500px' }}
+              />
             </div>
 
             {/* Results List */}
@@ -173,7 +266,19 @@ const MapaInterativo = () => {
                 return (
                   <div
                     key={location.id}
-                    className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+                    className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+                    onClick={() => {
+                      if (mapRef.current) {
+                        mapRef.current.setView([location.lat, location.lng], 15);
+                        const marker = markersRef.current.find(m => 
+                          Math.abs(m.getLatLng().lat - location.lat) < 0.001 &&
+                          Math.abs(m.getLatLng().lng - location.lng) < 0.001
+                        );
+                        if (marker) {
+                          marker.openPopup();
+                        }
+                      }
+                    }}
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
