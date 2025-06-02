@@ -1,11 +1,12 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
+import SkillForm from '../components/SkillForm';
 import { TrendingUp, Target, BookOpen, Users, Award, Compass } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const PlanoCarreira = () => {
   const { toast } = useToast();
+  const [selectedSkill, setSelectedSkill] = useState<null | typeof skills[0]>(null);
 
   const phases = [
     {
@@ -98,11 +99,7 @@ const PlanoCarreira = () => {
   ];
 
   const handleSkillClick = (skill: typeof skills[0]) => {
-    toast({
-      title: skill.name,
-      description: `${skill.description} ${skill.importance}`,
-      duration: 5000,
-    });
+    setSelectedSkill(skill);
   };
 
   return (
@@ -184,7 +181,7 @@ const PlanoCarreira = () => {
               Habilidades Essenciais do Século XXI
             </h2>
             <p className="text-green-100 text-lg max-w-2xl mx-auto">
-              Clique nas habilidades para entender sua importância e como desenvolvê-las
+              Clique nas habilidades para criar seu plano de desenvolvimento personalizado
             </p>
           </div>
           
@@ -255,6 +252,13 @@ const PlanoCarreira = () => {
           </div>
         </div>
       </section>
+
+      {selectedSkill && (
+        <SkillForm
+          skill={selectedSkill}
+          onClose={() => setSelectedSkill(null)}
+        />
+      )}
     </div>
   );
 };

@@ -1,11 +1,12 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
+import ToolForm from '../components/ToolForm';
 import { Briefcase, Lightbulb, TrendingUp, Users, Target, Zap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Empreendedorismo = () => {
   const { toast } = useToast();
+  const [selectedTool, setSelectedTool] = useState<null | typeof tools[0]>(null);
 
   const sections = [
     {
@@ -64,11 +65,7 @@ const Empreendedorismo = () => {
   ];
 
   const handleToolClick = (tool: typeof tools[0]) => {
-    toast({
-      title: tool.name,
-      description: `${tool.description} ${tool.benefits}`,
-      duration: 5000,
-    });
+    setSelectedTool(tool);
   };
 
   return (
@@ -127,7 +124,7 @@ const Empreendedorismo = () => {
               <h3 className="text-2xl font-bold">Ferramentas Essenciais</h3>
             </div>
             <p className="text-blue-100 mb-6 text-lg">
-              Clique nas ferramentas para saber mais sobre como aplicá-las no seu negócio:
+              Clique nas ferramentas para começar a utilizá-las em seu negócio:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {tools.map((tool, index) => (
@@ -189,6 +186,13 @@ const Empreendedorismo = () => {
           </div>
         </div>
       </section>
+
+      {selectedTool && (
+        <ToolForm
+          tool={selectedTool}
+          onClose={() => setSelectedTool(null)}
+        />
+      )}
     </div>
   );
 };
