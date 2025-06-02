@@ -2,8 +2,11 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
 import { Briefcase, Lightbulb, TrendingUp, Users, Target, Zap } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const Empreendedorismo = () => {
+  const { toast } = useToast();
+
   const sections = [
     {
       title: 'Ideação e Validação',
@@ -35,6 +38,13 @@ const Empreendedorismo = () => {
     'Plano Financeiro',
     'Roadmap de Produto'
   ];
+
+  const handleToolClick = (tool: string) => {
+    toast({
+      title: "Ferramenta Selecionada",
+      description: `Você clicou em: ${tool}`,
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
@@ -98,7 +108,8 @@ const Empreendedorismo = () => {
               {tools.map((tool, index) => (
                 <div
                   key={tool}
-                  className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors duration-200"
+                  onClick={() => handleToolClick(tool)}
+                  className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors duration-200 cursor-pointer"
                 >
                   <span className="font-medium">{tool}</span>
                 </div>

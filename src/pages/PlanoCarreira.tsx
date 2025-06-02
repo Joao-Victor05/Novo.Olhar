@@ -2,8 +2,11 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
 import { TrendingUp, Target, BookOpen, Users, Award, Compass } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const PlanoCarreira = () => {
+  const { toast } = useToast();
+
   const phases = [
     {
       title: 'Autoconhecimento',
@@ -61,6 +64,13 @@ const PlanoCarreira = () => {
     'Trabalho em Equipe',
     'Resolução de Problemas'
   ];
+
+  const handleSkillClick = (skill: string) => {
+    toast({
+      title: "Habilidade Selecionada",
+      description: `Você clicou em: ${skill}`,
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">
@@ -149,7 +159,8 @@ const PlanoCarreira = () => {
             {skills.map((skill, index) => (
               <div
                 key={skill}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center hover:bg-white/20 transition-colors duration-200"
+                onClick={() => handleSkillClick(skill)}
+                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center hover:bg-white/20 transition-colors duration-200 cursor-pointer"
               >
                 <span className="text-white font-medium">{skill}</span>
               </div>
