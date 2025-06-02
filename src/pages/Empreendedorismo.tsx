@@ -31,18 +31,43 @@ const Empreendedorismo = () => {
   ];
 
   const tools = [
-    'Canvas de Modelo de Negócios',
-    'Análise SWOT',
-    'Matriz de Validação de Hipóteses',
-    'Funil de Vendas',
-    'Plano Financeiro',
-    'Roadmap de Produto'
+    {
+      name: 'Canvas de Modelo de Negócios',
+      description: 'Ferramenta visual para mapear e validar seu modelo de negócio de forma estruturada.',
+      benefits: 'Ajuda a visualizar propostas de valor, segmentos de clientes e fontes de receita.'
+    },
+    {
+      name: 'Análise SWOT',
+      description: 'Método para analisar forças, fraquezas, oportunidades e ameaças do seu negócio.',
+      benefits: 'Oferece visão completa do cenário interno e externo da empresa.'
+    },
+    {
+      name: 'Matriz de Validação de Hipóteses',
+      description: 'Framework para testar suposições sobre seu negócio antes de investir recursos.',
+      benefits: 'Reduz riscos e aumenta chances de sucesso do empreendimento.'
+    },
+    {
+      name: 'Funil de Vendas',
+      description: 'Processo estruturado para converter prospects em clientes pagantes.',
+      benefits: 'Melhora conversão e previsibilidade de receitas.'
+    },
+    {
+      name: 'Plano Financeiro',
+      description: 'Projeções financeiras detalhadas incluindo custos, receitas e fluxo de caixa.',
+      benefits: 'Garante sustentabilidade financeira e facilita captação de investimentos.'
+    },
+    {
+      name: 'Roadmap de Produto',
+      description: 'Planejamento estratégico do desenvolvimento e evolução do seu produto.',
+      benefits: 'Alinha equipe e garante entrega de valor contínuo aos clientes.'
+    }
   ];
 
-  const handleToolClick = (tool: string) => {
+  const handleToolClick = (tool: typeof tools[0]) => {
     toast({
-      title: "Ferramenta Selecionada",
-      description: `Você clicou em: ${tool}`,
+      title: tool.name,
+      description: `${tool.description} ${tool.benefits}`,
+      duration: 5000,
     });
   };
 
@@ -102,16 +127,18 @@ const Empreendedorismo = () => {
               <h3 className="text-2xl font-bold">Ferramentas Essenciais</h3>
             </div>
             <p className="text-blue-100 mb-6 text-lg">
-              Utilize essas ferramentas fundamentais para estruturar e desenvolver seu negócio:
+              Clique nas ferramentas para saber mais sobre como aplicá-las no seu negócio:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {tools.map((tool, index) => (
                 <div
-                  key={tool}
+                  key={tool.name}
                   onClick={() => handleToolClick(tool)}
-                  className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors duration-200 cursor-pointer"
+                  className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors duration-200 cursor-pointer group"
                 >
-                  <span className="font-medium">{tool}</span>
+                  <span className="font-medium group-hover:text-blue-100 transition-colors">
+                    {tool.name}
+                  </span>
                 </div>
               ))}
             </div>

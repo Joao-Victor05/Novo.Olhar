@@ -55,20 +55,53 @@ const PlanoCarreira = () => {
   ];
 
   const skills = [
-    'Comunicação Eficaz',
-    'Liderança',
-    'Inteligência Emocional',
-    'Pensamento Crítico',
-    'Adaptabilidade',
-    'Gestão de Tempo',
-    'Trabalho em Equipe',
-    'Resolução de Problemas'
+    {
+      name: 'Comunicação Eficaz',
+      description: 'Habilidade de transmitir ideias de forma clara e persuasiva, tanto verbal quanto escrita.',
+      importance: 'Essencial para liderança, colaboração e crescimento profissional.'
+    },
+    {
+      name: 'Liderança',
+      description: 'Capacidade de influenciar, motivar e guiar pessoas em direção a objetivos comuns.',
+      importance: 'Fundamental para cargos de gestão e desenvolvimento de equipes.'
+    },
+    {
+      name: 'Inteligência Emocional',
+      description: 'Habilidade de reconhecer e gerenciar emoções próprias e dos outros.',
+      importance: 'Crucial para relacionamentos saudáveis e tomada de decisões equilibradas.'
+    },
+    {
+      name: 'Pensamento Crítico',
+      description: 'Capacidade de analisar informações de forma objetiva e tomar decisões fundamentadas.',
+      importance: 'Vital para resolução de problemas complexos e inovação.'
+    },
+    {
+      name: 'Adaptabilidade',
+      description: 'Flexibilidade para se ajustar a mudanças e aprender continuamente.',
+      importance: 'Indispensável em um mundo de trabalho em constante transformação.'
+    },
+    {
+      name: 'Gestão de Tempo',
+      description: 'Habilidade de organizar e priorizar tarefas para maximizar produtividade.',
+      importance: 'Essencial para eficiência e equilíbrio entre vida pessoal e profissional.'
+    },
+    {
+      name: 'Trabalho em Equipe',
+      description: 'Capacidade de colaborar efetivamente com pessoas diversas.',
+      importance: 'Fundamental na maioria dos ambientes de trabalho modernos.'
+    },
+    {
+      name: 'Resolução de Problemas',
+      description: 'Habilidade de identificar, analisar e solucionar desafios de forma criativa.',
+      importance: 'Competência valorizada em todas as áreas e níveis profissionais.'
+    }
   ];
 
-  const handleSkillClick = (skill: string) => {
+  const handleSkillClick = (skill: typeof skills[0]) => {
     toast({
-      title: "Habilidade Selecionada",
-      description: `Você clicou em: ${skill}`,
+      title: skill.name,
+      description: `${skill.description} ${skill.importance}`,
+      duration: 5000,
     });
   };
 
@@ -151,18 +184,20 @@ const PlanoCarreira = () => {
               Habilidades Essenciais do Século XXI
             </h2>
             <p className="text-green-100 text-lg max-w-2xl mx-auto">
-              Desenvolva essas competências fundamentais para se destacar no mercado de trabalho moderno
+              Clique nas habilidades para entender sua importância e como desenvolvê-las
             </p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {skills.map((skill, index) => (
               <div
-                key={skill}
+                key={skill.name}
                 onClick={() => handleSkillClick(skill)}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center hover:bg-white/20 transition-colors duration-200 cursor-pointer"
+                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center hover:bg-white/20 transition-colors duration-200 cursor-pointer group"
               >
-                <span className="text-white font-medium">{skill}</span>
+                <span className="text-white font-medium group-hover:text-green-100 transition-colors">
+                  {skill.name}
+                </span>
               </div>
             ))}
           </div>
