@@ -21,9 +21,9 @@ const ImageCarousel = () => {
     },
     {
       url: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=1200&h=600&fit=crop',
-      title: 'Saúde e Bem-estar',
-      subtitle: 'Cuide da sua saúde física e mental',
-      link: '/saude'
+      title: 'Ludis',
+      subtitle: 'Descubra o poder transformador dos jogos e atividades lúdicas',
+      link: '/ludis'
     },
     {
       url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop',
