@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
+import MemoryGame from '../components/MemoryGame';
+import QuizGame from '../components/QuizGame';
+import WordGame from '../components/WordGame';
 import { Gamepad2, Zap, Sparkles, Trophy, Smile, Star, Check } from 'lucide-react';
 
 const Ludis = () => {
@@ -93,6 +96,21 @@ const Ludis = () => {
               Descubra o poder transformador dos jogos e atividades lúdicas. 
               Desenvolva habilidades, estimule a criatividade e encontre alegria no aprendizado.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Games Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+            Jogos Interativos
+          </h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+            <MemoryGame />
+            <QuizGame />
+            <WordGame />
           </div>
         </div>
       </section>

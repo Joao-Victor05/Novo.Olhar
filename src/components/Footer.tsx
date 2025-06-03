@@ -2,14 +2,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
-import { Home, Briefcase, TrendingUp, Heart, Map, Phone, Mail, MapPin } from 'lucide-react';
+import { Home, Briefcase, TrendingUp, Gamepad2, Map, Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   const navigationLinks = [
     { name: 'Início', path: '/', icon: Home },
     { name: 'Empreendedorismo', path: '/empreendedorismo', icon: Briefcase },
     { name: 'Plano de Carreira', path: '/plano-carreira', icon: TrendingUp },
-    { name: 'Saúde', path: '/saude', icon: Heart },
+    { name: 'Ludis', path: '/ludis', icon: Gamepad2 },
     { name: 'Mapa Interativo', path: '/mapa-interativo', icon: Map },
   ];
 
