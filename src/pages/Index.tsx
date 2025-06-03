@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import ImageCarousel from '../components/ImageCarousel';
 import ThemeCard from '../components/ThemeCard';
 import Footer from '../components/Footer';
-import { Briefcase, TrendingUp, Heart, Map } from 'lucide-react';
+import { Briefcase, TrendingUp, Gamepad2, Map } from 'lucide-react';
 
 const Index = () => {
   const themes = [
@@ -24,11 +23,11 @@ const Index = () => {
       color: 'from-emerald-400 to-teal-400'
     },
     {
-      title: 'Saúde',
-      description: 'Cuide do seu bem-estar físico e mental. Dicas de alimentação, exercícios, mindfulness e hábitos saudáveis para uma vida plena.',
-      icon: Heart,
-      link: '/saude',
-      color: 'from-rose-400 to-pink-400'
+      title: 'Ludis',
+      description: 'Descubra o poder transformador dos jogos e atividades lúdicas. Desenvolva habilidades, estimule a criatividade e encontre alegria no aprendizado.',
+      icon: Gamepad2,
+      link: '/ludis',
+      color: 'from-purple-400 to-pink-400'
     },
     {
       title: 'Mapa Interativo',
