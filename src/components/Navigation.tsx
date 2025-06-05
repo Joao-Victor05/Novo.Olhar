@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home, Briefcase, TrendingUp, Heart, Map } from 'lucide-react';
+import { Menu, X, Home, Briefcase, TrendingUp, Gamepad2, Map } from 'lucide-react';
 import Logo from './Logo';
 
 const Navigation = () => {
@@ -12,7 +12,7 @@ const Navigation = () => {
     { name: 'Início', path: '/', icon: Home },
     { name: 'Empreendedorismo', path: '/empreendedorismo', icon: Briefcase },
     { name: 'Plano de Carreira', path: '/plano-carreira', icon: TrendingUp },
-    { name: 'Saúde', path: '/saude', icon: Heart },
+    { name: 'Ludis', path: '/ludis', icon: Gamepad2 },
     { name: 'Mapa Interativo', path: '/mapa-interativo', icon: Map },
   ];
 

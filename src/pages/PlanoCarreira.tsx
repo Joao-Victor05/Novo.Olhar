@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import SkillForm from '../components/SkillForm';
-import { TrendingUp, Target, BookOpen, Users, Award, Compass } from 'lucide-react';
+import CareerCanvas from '../components/CareerCanvas';
+import SwotAnalysis from '../components/SwotAnalysis';
+import { TrendingUp, Target, BookOpen, Users, Award, Compass, BarChart3, Layers } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const PlanoCarreira = () => {
   const { toast } = useToast();
   const [selectedSkill, setSelectedSkill] = useState<null | typeof skills[0]>(null);
+  const [activeTab, setActiveTab] = useState<'overview' | 'canvas' | 'swot'>('overview');
 
   const phases = [
     {
@@ -121,137 +124,196 @@ const PlanoCarreira = () => {
               Defina metas claras e construa o caminho para alcançar seus objetivos.
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Phases Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            Fases do Desenvolvimento de Carreira
-          </h2>
-          
-          <div className="space-y-8">
-            {phases.map((phase, index) => {
-              const Icon = phase.icon;
-              return (
-                <div
-                  key={phase.title}
-                  className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                    <div className="flex items-center">
-                      <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-4">
-                        <Icon className="h-8 w-8 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">
-                          {phase.title}
-                        </h3>
-                        <p className="text-gray-600">
-                          {phase.description}
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="lg:flex-1">
-                      <ul className="space-y-2">
-                        {phase.steps.map((step, stepIndex) => (
-                          <li key={stepIndex} className="flex items-center text-gray-700">
-                            <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                            {step}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-green-500 to-green-600">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <Award className="h-12 w-12 text-white mx-auto mb-4" />
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Habilidades Essenciais do Século XXI
-            </h2>
-            <p className="text-green-100 text-lg max-w-2xl mx-auto">
-              Clique nas habilidades para criar seu plano de desenvolvimento personalizado
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {skills.map((skill, index) => (
-              <div
-                key={skill.name}
-                onClick={() => handleSkillClick(skill)}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center hover:bg-white/20 transition-colors duration-200 cursor-pointer group"
+          {/* Navigation Tabs */}
+          <div className="flex justify-center mb-8">
+            <div className="bg-white rounded-lg p-1 shadow-lg">
+              <button
+                onClick={() => setActiveTab('overview')}
+                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                  activeTab === 'overview' 
+                    ? 'bg-green-500 text-white' 
+                    : 'text-gray-600 hover:text-green-600'
+                }`}
               >
-                <span className="text-white font-medium group-hover:text-green-100 transition-colors">
-                  {skill.name}
-                </span>
+                Visão Geral
+              </button>
+              <button
+                onClick={() => setActiveTab('canvas')}
+                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                  activeTab === 'canvas' 
+                    ? 'bg-green-500 text-white' 
+                    : 'text-gray-600 hover:text-green-600'
+                }`}
+              >
+                <Layers className="h-4 w-4 inline mr-2" />
+                Canvas
+              </button>
+              <button
+                onClick={() => setActiveTab('swot')}
+                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                  activeTab === 'swot' 
+                    ? 'bg-green-500 text-white' 
+                    : 'text-gray-600 hover:text-green-600'
+                }`}
+              >
+                <BarChart3 className="h-4 w-4 inline mr-2" />
+                SWOT
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Conditional Content Based on Active Tab */}
+      {activeTab === 'canvas' && (
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <CareerCanvas />
+          </div>
+        </section>
+      )}
+
+      {activeTab === 'swot' && (
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <SwotAnalysis />
+          </div>
+        </section>
+      )}
+
+      {activeTab === 'overview' && (
+        <>
+          {/* Phases Section */}
+          <section className="py-16 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+                Fases do Desenvolvimento de Carreira
+              </h2>
+              
+              <div className="space-y-8">
+                {phases.map((phase, index) => {
+                  const Icon = phase.icon;
+                  return (
+                    <div
+                      key={phase.title}
+                      className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
+                    >
+                      <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                        <div className="flex items-center">
+                          <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-4">
+                            <Icon className="h-8 w-8 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">
+                              {phase.title}
+                            </h3>
+                            <p className="text-gray-600">
+                              {phase.description}
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="lg:flex-1">
+                          <ul className="space-y-2">
+                            {phase.steps.map((step, stepIndex) => (
+                              <li key={stepIndex} className="flex items-center text-gray-700">
+                                <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                                {step}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Content Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto space-y-12">
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Como Criar Seu Plano de Carreira Personalizado
-            </h3>
-            <div className="prose prose-lg max-w-none text-gray-600">
-              <p className="mb-4">
-                Um plano de carreira eficaz é mais do que uma lista de objetivos profissionais. 
-                É um roadmap estratégico que considera suas aspirações pessoais, o cenário do 
-                mercado de trabalho e as oportunidades de crescimento em sua área.
-              </p>
-              <p className="mb-4">
-                Comece com uma análise profunda de onde você está hoje e onde quer chegar. 
-                Considere não apenas cargos e salários, mas também o tipo de trabalho que 
-                te motiva, o ambiente organizacional que você prefere e o impacto que deseja 
-                causar através da sua profissão.
-              </p>
-              <p>
-                Revise e ajuste seu plano regularmente. O mundo do trabalho está em constante 
-                evolução, e sua carreira deve ser flexível o suficiente para se adaptar a 
-                novas oportunidades e desafios.
-              </p>
             </div>
-          </div>
+          </section>
 
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Navegando pelas Transições de Carreira
-            </h3>
-            <div className="prose prose-lg max-w-none text-gray-600">
-              <p className="mb-4">
-                As transições de carreira são momentos cruciais que exigem planejamento cuidadoso 
-                e estratégia. Seja uma mudança de área, promoção ou início da vida profissional, 
-                cada transição oferece oportunidades únicas de crescimento.
-              </p>
-              <p className="mb-4">
-                Prepare-se antecipadamente para essas mudanças. Desenvolva habilidades transferíveis, 
-                construa uma marca pessoal sólida e mantenha sua rede de contatos atualizada. 
-                A preparação é a chave para transições suaves e bem-sucedidas.
-              </p>
-              <p>
-                Lembre-se de que toda carreira tem altos e baixos. Mantenha uma perspectiva 
-                de longo prazo e veja os desafios como oportunidades de aprendizado e crescimento 
-                pessoal e profissional.
-              </p>
+          {/* Skills Section */}
+          <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-green-500 to-green-600">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-12">
+                <Award className="h-12 w-12 text-white mx-auto mb-4" />
+                <h2 className="text-3xl font-bold text-white mb-4">
+                  Habilidades Essenciais do Século XXI
+                </h2>
+                <p className="text-green-100 text-lg max-w-2xl mx-auto">
+                  Clique nas habilidades para criar seu plano de desenvolvimento personalizado
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {skills.map((skill, index) => (
+                  <div
+                    key={skill.name}
+                    onClick={() => handleSkillClick(skill)}
+                    className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center hover:bg-white/20 transition-colors duration-200 cursor-pointer group"
+                  >
+                    <span className="text-white font-medium group-hover:text-green-100 transition-colors">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
+
+          {/* Content Section */}
+          <section className="py-16 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto space-y-12">
+              <div className="bg-white rounded-xl shadow-lg p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  Como Criar Seu Plano de Carreira Personalizado
+                </h3>
+                <div className="prose prose-lg max-w-none text-gray-600">
+                  <p className="mb-4">
+                    Um plano de carreira eficaz é mais do que uma lista de objetivos profissionais. 
+                    É um roadmap estratégico que considera suas aspirações pessoais, o cenário do 
+                    mercado de trabalho e as oportunidades de crescimento em sua área.
+                  </p>
+                  <p className="mb-4">
+                    Comece com uma análise profunda de onde você está hoje e onde quer chegar. 
+                    Considere não apenas cargos e salários, mas também o tipo de trabalho que 
+                    te motiva, o ambiente organizacional que você prefere e o impacto que deseja 
+                    causar através da sua profissão.
+                  </p>
+                  <p>
+                    Revise e ajuste seu plano regularmente. O mundo do trabalho está em constante 
+                    evolução, e sua carreira deve ser flexível o suficiente para se adaptar a 
+                    novas oportunidades e desafios.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-lg p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  Navegando pelas Transições de Carreira
+                </h3>
+                <div className="prose prose-lg max-w-none text-gray-600">
+                  <p className="mb-4">
+                    As transições de carreira são momentos cruciais que exigem planejamento cuidadoso 
+                    e estratégia. Seja uma mudança de área, promoção ou início da vida profissional, 
+                    cada transição oferece oportunidades únicas de crescimento.
+                  </p>
+                  <p className="mb-4">
+                    Prepare-se antecipadamente para essas mudanças. Desenvolva habilidades transferíveis, 
+                    construa uma marca pessoal sólida e mantenha sua rede de contatos atualizada. 
+                    A preparação é a chave para transições suaves e bem-sucedidas.
+                  </p>
+                  <p>
+                    Lembre-se de que toda carreira tem altos e baixos. Mantenha uma perspectiva 
+                    de longo prazo e veja os desafios como oportunidades de aprendizado e crescimento 
+                    pessoal e profissional.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       {selectedSkill && (
         <SkillForm

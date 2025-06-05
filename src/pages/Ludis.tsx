@@ -1,9 +1,13 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
-import { Gamepad2, Zap, Sparkles, Trophy, Smile, Star } from 'lucide-react';
+import MemoryGame from '../components/MemoryGame';
+import QuizGame from '../components/QuizGame';
+import WordGame from '../components/WordGame';
+import { Gamepad2, Zap, Sparkles, Trophy, Smile, Star, Check } from 'lucide-react';
 
-const Saude = () => {
+const Ludis = () => {
+  const [completedHabits, setCompletedHabits] = useState<Set<number>>(new Set());
+
   const ludisAreas = [
     {
       title: 'Jogos e Diversão',
@@ -64,6 +68,16 @@ const Saude = () => {
     'Celebrar pequenas conquistas diárias'
   ];
 
+  const toggleHabit = (index: number) => {
+    const newCompletedHabits = new Set(completedHabits);
+    if (newCompletedHabits.has(index)) {
+      newCompletedHabits.delete(index);
+    } else {
+      newCompletedHabits.add(index);
+    }
+    setCompletedHabits(newCompletedHabits);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
       <Navigation />
@@ -82,6 +96,21 @@ const Saude = () => {
               Descubra o poder transformador dos jogos e atividades lúdicas. 
               Desenvolva habilidades, estimule a criatividade e encontre alegria no aprendizado.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Games Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+            Jogos Interativos
+          </h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+            <MemoryGame />
+            <QuizGame />
+            <WordGame />
           </div>
         </div>
       </section>
@@ -147,12 +176,40 @@ const Saude = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {ludisHabits.map((habit, index) => (
-              <div
+              <button
                 key={habit}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors duration-200"
+                onClick={() => toggleHabit(index)}
+                className={`
+                  relative p-4 rounded-lg transition-all duration-200 text-left
+                  ${completedHabits.has(index) 
+                    ? 'bg-white/20 backdrop-blur-sm border-2 border-white/50' 
+                    : 'bg-white/10 backdrop-blur-sm hover:bg-white/20'
+                  }
+                `}
               >
-                <span className="text-white font-medium">{habit}</span>
-              </div>
+                <div className="flex items-start space-x-3">
+                  <div className={`
+                    flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center mt-0.5
+                    ${completedHabits.has(index) 
+                      ? 'bg-white border-white' 
+                      : 'border-white/50 hover:border-white'
+                    }
+                  `}>
+                    {completedHabits.has(index) && (
+                      <Check className="h-4 w-4 text-purple-500" />
+                    )}
+                  </div>
+                  <span className={`
+                    font-medium
+                    ${completedHabits.has(index) 
+                      ? 'text-white line-through opacity-75' 
+                      : 'text-white'
+                    }
+                  `}>
+                    {habit}
+                  </span>
+                </div>
+              </button>
             ))}
           </div>
         </div>
@@ -214,4 +271,4 @@ const Saude = () => {
   );
 };
 
-export default Saude;
+export default Ludis;
