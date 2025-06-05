@@ -20,7 +20,7 @@ const ImageCarousel = () => {
       link: '/plano-carreira'
     },
     {
-      url: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=1200&h=600&fit=crop',
+      url: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=1200&h=600&fit=crop',
       title: 'Ludis',
       subtitle: 'Descubra o poder transformador dos jogos e atividades lúdicas',
       link: '/ludis'
